@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The National Observer - India Premium Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap');
+        
+        :root {
+            --bg-main: #060a13; --bg-surface: #0f1626; --bg-surface-hover: #17223b; 
+            --border-color: #1e293b; --text-main: #f8fafc; --text-muted: #94a3b8; 
+            --accent: #f59e0b; --accent-text: #060a13; 
+            --breaking-bg: rgba(127, 29, 29, 0.45); --breaking-border: rgba(239, 68, 68, 0.4); 
+            --input-bg: #0b0f19; --selection-bg: #f59e0b; --selection-text: #060a13;
+        }
+        body.theme-light { 
+            --bg-main: #fcfbf9; --bg-surface: #ffffff; --bg-surface-hover: #f7f5f0; 
+            --border-color: #d1cbbf; --text-main: #1a1612; --text-muted: #5e564d; 
+            --accent: #0f766e; --accent-text: #ffffff; 
+            --breaking-bg: rgba(254, 226, 226, 0.95); --breaking-border: rgba(239, 68, 68, 0.6); 
+            --input-bg: #f5f3ef; --selection-bg: #0f766e; --selection-text: #ffffff; 
+        }
+        body.theme-cyber { 
+            --bg-main: #030305; --bg-surface: #0b0b12; --bg-surface-hover: #151522; 
+            --border-color: #39ff14; --text-main: #39ff14; --text-muted: #00e5ff; 
+            --accent: #ffff00; --accent-text: #000000; 
+            --breaking-bg: rgba(255, 0, 85, 0.15); --breaking-border: #ff0055; 
+            --input-bg: #06060a; --selection-bg: #39ff14; --selection-text: #000000; 
+        }
+
+        body {
+            background-color: var(--bg-main); color: var(--text-main);
+            font-family: 'Inter', sans-serif; transition: background-color 0.3s, color 0.3s;
+        }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        ::selection { background-color: var(--selection-bg); color: var(--selection-text); }
+        
+        /* HIDDEN GOOGLE TRANSLATE DEFAULT UI */
+        .goog-te-banner-frame.skiptranslate, #goog-gt-tt { display: none !important; }
+        body { top: 0px !important; }
+        #google_translate_element { display: none !important; }
+
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+        .animate-marquee { display: inline-block; white-space: nowrap; animation: marquee 35s linear infinite; }
+        .animate-marquee:hover { animation-play-state: paused; }
+
+        .glass-panel { background: var(--bg-surface); backdrop-filter: blur(12px); border: 1px solid var(--border-color); }
+        .zen-active { background-color: var(--bg-main) !important; color: var(--text-main) !important; max-width: 700px !important; margin: 0 auto !important; box-shadow: none !important; border-color: transparent !important; }
+        .zen-active img, .zen-active .hide-in-zen { display: none !important; }
+        .zen-active h2 { text-align: center; font-size: 2.5rem; }
+        .zen-active p { font-size: 1.125rem; line-height: 1.8; opacity: 0.9; }
+
+        .toast-enter { animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes slideIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        
+        /* Premium Ad Slots */
+        .ad-space { background: repeating-linear-gradient(45deg, var(--bg-surface), var(--bg-surface) 10px, var(--bg-main) 10px, var(--bg-main) 20px); border: 1px dashed var(--border-color); display: flex; align-items: center; justify-content: center; flex-direction: column; color: var(--text-muted); opacity: 0.8; transition: opacity 0.3s; }
+        .ad-space:hover { opacity: 1; border-color: var(--accent); }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-main); }
+        ::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between" id="appBody">
+
+    <div id="google_translate_element"></div>
+
+    <div class="bg-[var(--accent)] text-[var(--accent-text)] py-1.5 px-4 text-[10px] font-black tracking-widest text-center flex flex-col md:flex-row items-center justify-between gap-2 shadow-inner z-50 relative">
+        <div class="flex items-center space-x-2 shrink-0">
+            <span class="w-2 h-2 rounded-full bg-red-600 animate-ping inline-block"></span>
+            <span>NATIONAL INTELLIGENCE & MARKETS</span>
+        </div>
+        <div class="flex space-x-6 overflow-hidden flex-1 justify-center">
+            <span class="animate-marquee flex space-x-8">
+                <span>SENSEX: <span id="mktSensex">74,219</span> <span class="text-green-800">▲ +310</span></span>
+                <span>NIFTY 50: <span id="mktNifty">22,543</span> <span class="text-green-800">▲ +102</span></span>
+                <span>USD/INR: <span id="mktUsd">83.45</span> <span class="text-red-800">▼ -0.12</span></span>
+                <span>GOLD (10g): <span id="mktGold">₹72,450</span> <span class="text-green-800">▲ +120</span></span>
+                <span>SILVER (1kg): <span id="mktSilver">₹91,200</span> <span class="text-green-800">▲ +450</span></span>
+                <span>PLATINUM (10g): <span id="mktPlat">₹35,100</span> <span class="text-red-800">▼ -85</span></span>
+            </span>
+        </div>
+        <div class="flex items-center space-x-4 shrink-0">
+            <button onclick="toggleModal('weatherModal', true)" class="hover:bg-black/10 px-2 py-0.5 rounded transition flex items-center space-x-1" title="Click for 5-Day Forecast">
+                <i class="fa-solid fa-cloud-sun mr-1"></i>
+                <span id="liveWeather">Delhi: Fetching...</span>
+            </button>
+            <span id="currentDate" class="hidden md:inline"></span>
+            <span class="bg-[var(--bg-main)] text-[var(--text-main)] px-2 py-0.5 rounded font-mono hidden lg:inline">NODE-DELHI</span>
+        </div>
+    </div>
+
+    <header class="border-b border-[var(--border-color)] bg-[var(--bg-main)] sticky top-0 z-40 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col lg:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3.5 cursor-pointer shrink-0" onclick="filterCategory('Top Headlines')">
+                <div class="bg-[var(--accent)] text-[var(--accent-text)] p-2.5 rounded-xl font-black text-2xl tracking-tighter">IND</div>
+                <div>
+                    <h1 class="font-serif text-2xl md:text-3xl font-black tracking-tight text-[var(--text-main)] uppercase">The National Observer</h1>
+                    <p class="text-[10px] md:text-xs text-[var(--text-muted)] tracking-wide font-medium uppercase">Politics • Defense • Economy • State Intel</p>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-3 w-full lg:w-auto justify-between lg:justify-end">
+                <!-- Custom Translation Dropdown -->
+                <div class="flex items-center space-x-1 bg-[var(--bg-surface)] border border-[var(--border-color)] p-1.5 rounded-xl transition hover:border-[var(--accent)]">
+                    <i class="fa-solid fa-language text-[var(--accent)] ml-1"></i>
+                    <select id="customTranslate" onchange="triggerTranslation(this.value)" class="bg-transparent text-[11px] text-[var(--text-main)] border-none outline-none cursor-pointer pr-4 font-bold focus:ring-0 uppercase tracking-wide">
+                        <option value="" class="bg-[var(--bg-surface)]">English (Eng)</option>
+                        <option value="hi" class="bg-[var(--bg-surface)]">हिन्दी (Hin)</option>
+                        <option value="ta" class="bg-[var(--bg-surface)]">தமிழ் (Tam)</option>
+                        <option value="te" class="bg-[var(--bg-surface)]">తెలుగు (Tel)</option>
+                        <option value="mr" class="bg-[var(--bg-surface)]">मराठी (Mar)</option>
+                        <option value="bn" class="bg-[var(--bg-surface)]">বাংলা (Ben)</option>
+                        <option value="gu" class="bg-[var(--bg-surface)]">ગુજરાતી (Guj)</option>
+                        <option value="kn" class="bg-[var(--bg-surface)]">ಕನ್ನಡ (Kan)</option>
+                        <option value="ml" class="bg-[var(--bg-surface)]">മലയാളം (Mal)</option>
+                        <option value="pa" class="bg-[var(--bg-surface)]">ਪੰਜਾਬੀ (Pun)</option>
+                    </select>
+                </div>
+
+                <!-- Theme Toggle -->
+                <div class="flex items-center space-x-1 bg-[var(--bg-surface)] border border-[var(--border-color)] p-1.5 rounded-xl">
+                    <span class="text-[9px] font-black uppercase tracking-wider px-2 text-[var(--text-muted)]">Theme:</span>
+                    <select id="themeSelect" onchange="changeTheme(this.value)" class="bg-transparent text-[11px] text-[var(--text-main)] border-none outline-none cursor-pointer pr-4 font-bold focus:ring-0 uppercase tracking-wide">
+                        <option value="midnight" class="bg-[var(--bg-surface)]">Midnight</option>
+                        <option value="light" class="bg-[var(--bg-surface)]">Editorial</option>
+                        <option value="cyber" class="bg-[var(--bg-surface)]">Cyberpunk</option>
+                    </select>
+                </div>
+                
+                <div class="bg-[var(--bg-surface)] border border-[var(--border-color)] px-3 py-1.5 rounded-xl text-[11px] flex items-center space-x-2">
+                    <span id="fDot" class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+                    <span id="fStatus" class="font-semibold text-[var(--text-muted)]">Connecting...</span>
+                </div>
+
+                <div id="adminControlsPanel">
+                    <button onclick="toggleModal('loginModal', true)" class="bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] hover:text-[var(--accent)] text-[11px] font-bold py-1.5 px-3.5 rounded-xl transition">🔐 Admin</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Advertisement Banner (Top) -->
+        <div class="max-w-7xl mx-auto px-4 py-2 hidden md:block">
+            <div class="ad-space w-full h-[90px] rounded-xl text-xs font-mono uppercase tracking-widest relative overflow-hidden">
+                <span class="absolute top-1 left-2 text-[8px] opacity-50">Google AdSense Space</span>
+                <i class="fa-solid fa-rectangle-ad text-2xl mb-1 text-[var(--accent)]"></i>
+                Sponsored National Campaign Area (728x90)
+            </div>
+        </div>
+
+        <div id="breakingBannerContainer" class="hidden bg-[var(--breaking-bg)] border-t border-b border-[var(--breaking-border)] py-2 flex items-center overflow-hidden">
+            <span class="bg-red-600 text-white text-[10px] font-black px-3 py-1 rounded ml-4 tracking-widest shrink-0 animate-pulse">FLASH</span>
+            <div class="flex-1 overflow-hidden whitespace-nowrap ml-4">
+                <div id="breakingTicker" class="animate-marquee text-[var(--text-main)] text-xs font-semibold tracking-wide"></div>
+            </div>
+        </div>
+
+        <div class="border-t border-[var(--border-color)] bg-[var(--bg-surface)] overflow-x-auto whitespace-nowrap scrollbar-hide">
+            <div class="max-w-7xl mx-auto px-4 flex items-center justify-between gap-4 py-3 min-w-max">
+                <div class="flex items-center gap-1.5" id="categoryNav"></div>
+                
+                <div id="statesDropdownContainer" class="hidden flex items-center space-x-2 p-1 rounded-xl border border-[var(--border-color)] bg-[var(--bg-main)]">
+                    <span class="text-[10px] text-[var(--accent)] uppercase font-black pl-2 tracking-widest">State:</span>
+                    <select id="stateSelect" onchange="filterState(this.value)" class="bg-transparent text-xs text-[var(--text-main)] border-none outline-none focus:ring-0 pr-4 cursor-pointer font-semibold">
+                        <option value="All States" class="bg-[var(--bg-surface)] text-[var(--text-main)]">All States</option>
+                    </select>
+                </div>
+
+                <div class="relative w-64 ml-auto shrink-0">
+                    <input type="text" id="searchInput" onkeyup="resetAndRenderNews()" placeholder="Search national intel..." class="w-full bg-[var(--input-bg)] border border-[var(--border-color)] text-[var(--text-main)] focus:border-[var(--accent)] rounded-xl py-2 pl-9 pr-4 text-xs outline-none transition" />
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-2.5 text-[var(--text-muted)] text-xs"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="bg-[var(--bg-surface)] border-b border-[var(--border-color)] py-2">
+        <div class="max-w-7xl mx-auto px-4 flex items-center space-x-2">
+            <span class="text-[10px] font-black uppercase text-[var(--text-muted)] tracking-wider">Source Wire:</span>
+            <div class="inline-flex rounded-lg bg-[var(--bg-main)] border border-[var(--border-color)] p-0.5">
+                <button onclick="setSourceFilter('all')" id="btnSrcAll" class="px-3 py-1 rounded-md text-[10px] font-bold bg-[var(--accent)] text-[var(--accent-text)] transition">All Intel</button>
+                <button onclick="setSourceFilter('verified')" id="btnSrcVerified" class="px-3 py-1 rounded-md text-[10px] font-bold text-[var(--text-muted)] hover:text-[var(--text-main)] transition">Verified Editor</button>
+                <button onclick="setSourceFilter('automated')" id="btnSrcAuto" class="px-3 py-1 rounded-md text-[10px] font-bold text-[var(--text-muted)] hover:text-[var(--text-main)] transition">ANI / AI Auto-Wire</button>
+            </div>
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 py-8 flex-1 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 relative">
+        
+        <!-- Left/Main Column: News Feed -->
+        <div class="lg:col-span-8 xl:col-span-9 space-y-8">
+            <div id="featuredArticleContainer"></div>
+
+            <div class="border-b border-[var(--border-color)] pb-3 mt-8 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <span class="w-2.5 h-2.5 bg-[var(--accent)] rounded-full animate-ping"></span>
+                    <h3 class="font-serif text-xl font-black tracking-wider text-[var(--text-main)] uppercase">Latest Dispatches</h3>
+                </div>
+                <span class="text-xs font-mono text-[var(--accent)] font-bold tracking-widest" id="articleCount">Loading DB...</span>
+            </div>
+
+            <!-- In-Feed Ad Banner -->
+            <div class="ad-space w-full h-[120px] rounded-2xl text-xs font-mono uppercase tracking-widest relative">
+                <span class="absolute top-2 left-3 text-[8px] opacity-50">Google AdSense Space</span>
+                <i class="fa-brands fa-google text-3xl mb-2 text-[var(--accent)]"></i>
+                In-Feed Native Advertisement
+            </div>
+
+            <div id="newsGrid" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+            
+            <div id="loadingMoreSpinner" class="hidden flex justify-center py-6">
+                <i class="fa-solid fa-circle-notch fa-spin text-2xl text-[var(--accent)]"></i>
+            </div>
+        </div>
+
+        <!-- Right Column: Premium Sidebar Features -->
+        <aside class="lg:col-span-4 xl:col-span-3 space-y-8 sticky top-[240px] self-start hidden lg:block">
+            
+            <!-- Live TV Simulator Widget -->
+            <div class="glass-panel rounded-2xl overflow-hidden shadow-2xl">
+                <div class="bg-red-700 text-white text-[10px] font-black uppercase px-4 py-2 tracking-widest flex items-center justify-between">
+                    <span>Live Broadcast</span>
+                    <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                </div>
+                <div class="aspect-video bg-black relative cursor-pointer group flex items-center justify-center">
+                    <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=400&q=80" class="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-30 transition" />
+                    <i class="fa-solid fa-circle-play text-4xl text-white/80 group-hover:scale-110 group-hover:text-red-500 transition relative z-10 drop-shadow-lg"></i>
+                    <span class="absolute bottom-2 right-2 bg-black/80 px-2 py-0.5 text-[8px] text-white rounded">SANSAD TV HD</span>
+                </div>
+                <div class="p-4 bg-[var(--bg-surface)]">
+                    <h4 class="font-bold text-sm text-[var(--text-main)] mb-1">Parliament Monsoon Session</h4>
+                    <p class="text-xs text-[var(--text-muted)] leading-tight">Live coverage of the defense budget debate from the lower house.</p>
+                </div>
+            </div>
+
+            <!-- Interactive Opinion Poll Widget -->
+            <div class="glass-panel rounded-2xl p-5 shadow-2xl">
+                <h4 class="font-serif font-black text-[var(--text-main)] uppercase tracking-wide border-b border-[var(--border-color)] pb-2 mb-4"><i class="fa-solid fa-square-poll-vertical text-[var(--accent)] mr-2"></i> National Poll</h4>
+                <p class="text-sm text-[var(--text-main)] font-semibold mb-4 leading-snug">Do you support the PMO's newly announced mandate for fully electric logistics fleets by 2028?</p>
+                <div class="space-y-2 text-sm" id="pollOptions">
+                    <label class="flex items-center space-x-3 p-2 rounded-lg border border-[var(--border-color)] hover:bg-[var(--bg-main)] cursor-pointer transition">
+                        <input type="radio" name="poll1" onclick="submitPoll()" class="accent-[var(--accent)]" /> <span class="text-[var(--text-main)]">Strongly Support</span>
+                    </label>
+                    <label class="flex items-center space-x-3 p-2 rounded-lg border border-[var(--border-color)] hover:bg-[var(--bg-main)] cursor-pointer transition">
+                        <input type="radio" name="poll1" onclick="submitPoll()" class="accent-[var(--accent)]" /> <span class="text-[var(--text-main)]">Neutral / Unsure</span>
+                    </label>
+                    <label class="flex items-center space-x-3 p-2 rounded-lg border border-[var(--border-color)] hover:bg-[var(--bg-main)] cursor-pointer transition">
+                        <input type="radio" name="poll1" onclick="submitPoll()" class="accent-[var(--accent)]" /> <span class="text-[var(--text-main)]">Oppose Timeline</span>
+                    </label>
+                </div>
+                <div id="pollResults" class="hidden mt-4 space-y-3">
+                    <div class="text-[10px] text-[var(--text-muted)] font-black uppercase tracking-widest mb-1">Live Results (124,502 Votes)</div>
+                    <div><div class="flex justify-between text-xs mb-1"><span>Support</span><span class="font-bold">68%</span></div><div class="w-full bg-[var(--bg-main)] rounded-full h-1.5"><div class="bg-green-500 h-1.5 rounded-full" style="width: 68%"></div></div></div>
+                    <div><div class="flex justify-between text-xs mb-1"><span>Neutral</span><span class="font-bold">14%</span></div><div class="w-full bg-[var(--bg-main)] rounded-full h-1.5"><div class="bg-gray-500 h-1.5 rounded-full" style="width: 14%"></div></div></div>
+                    <div><div class="flex justify-between text-xs mb-1"><span>Oppose</span><span class="font-bold">18%</span></div><div class="w-full bg-[var(--bg-main)] rounded-full h-1.5"><div class="bg-red-500 h-1.5 rounded-full" style="width: 18%"></div></div></div>
+                </div>
+            </div>
+
+            <!-- Sidebar Ad (MPU) -->
+            <div class="ad-space w-full h-[250px] rounded-2xl text-xs font-mono uppercase tracking-widest relative">
+                <span class="absolute top-2 left-3 text-[8px] opacity-50">AdSense Space</span>
+                <i class="fa-solid fa-rectangle-ad text-3xl mb-2 text-[var(--accent)]"></i>
+                Sidebar MPU (300x250)
+            </div>
+
+            <!-- Newsletter Subscription -->
+            <div class="bg-[var(--accent)] text-[var(--accent-text)] rounded-2xl p-5 shadow-2xl relative overflow-hidden">
+                <i class="fa-regular fa-envelope absolute -right-4 -top-4 text-8xl opacity-10"></i>
+                <h4 class="font-serif font-black uppercase tracking-wide text-lg mb-2 relative z-10">Intelligence Brief</h4>
+                <p class="text-xs font-semibold mb-4 opacity-90 relative z-10">Get the highly classified daily summary of Indian Geopolitics delivered directly to your inbox.</p>
+                <div class="flex relative z-10">
+                    <input type="email" placeholder="Enter secure email..." class="w-full bg-black/10 border border-black/20 text-[var(--accent-text)] placeholder-black/50 focus:border-black/50 rounded-l-xl py-2 px-3 text-xs outline-none" />
+                    <button onclick="window.showToast('Subscribed', 'You are now on the Intelligence Brief list.', 'fa-envelope-circle-check')" class="bg-black text-[var(--accent)] px-4 font-bold text-[10px] uppercase rounded-r-xl hover:bg-black/80 transition">Join</button>
+                </div>
+            </div>
+
+        </aside>
+    </main>
+
+    <div class="fixed bottom-6 right-6 z-30 flex flex-col space-y-3">
+        <button id="backToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="hidden bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] p-3.5 rounded-full shadow-lg hover:bg-[var(--bg-surface-hover)] transition-all">
+            <i class="fa-solid fa-arrow-up"></i>
+        </button>
+        <button id="adminFab" onclick="openEditor()" class="hidden bg-[var(--accent)] text-[var(--accent-text)] font-black p-4 rounded-full shadow-2xl hover:scale-105 transform flex items-center space-x-2 group">
+            <i class="fa-solid fa-pen-nib text-lg"></i>
+            <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-300 text-xs uppercase font-extrabold whitespace-nowrap">Broadcast</span>
+        </button>
+    </div>
+
+    <!-- Weather Forecast Modal -->
+    <div id="weatherModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity">
+        <div class="glass-panel border border-[var(--border-color)] text-[var(--text-main)] rounded-2xl p-6 w-full max-w-lg shadow-2xl relative">
+            <button onclick="toggleModal('weatherModal', false)" class="absolute top-4 right-4 text-[var(--text-muted)] hover:text-[var(--text-main)]"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="flex items-center space-x-3 border-b border-[var(--border-color)] pb-4 mb-4">
+                <i class="fa-solid fa-cloud-sun text-3xl text-[var(--accent)]"></i>
+                <div><h3 class="font-serif text-xl font-black uppercase tracking-widest">Meteorological Center</h3><p class="text-[10px] text-[var(--text-muted)] uppercase">Live Delhi NCR Satellite Feed</p></div>
+            </div>
+            <div id="weatherForecastContainer" class="space-y-3">
+                <div class="flex justify-center py-4"><i class="fa-solid fa-circle-notch fa-spin text-2xl text-[var(--accent)]"></i></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Reader Modal (with Zen Mode & TTS) -->
+    <div id="readerModal" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 overflow-y-auto hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div id="readerContent" class="bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] rounded-2xl w-full overflow-hidden shadow-2xl relative my-8 max-w-3xl transition-all duration-500">
+            <div class="absolute top-4 right-4 flex space-x-2 z-10 hide-in-zen">
+                <button onclick="shareArticle()" class="bg-black/80 hover:bg-black text-[var(--text-main)] w-9 h-9 rounded-full flex items-center justify-center border border-[var(--border-color)] transition shadow-lg" title="Copy Share Link"><i class="fa-solid fa-share-nodes"></i></button>
+                <button onclick="toggleZenMode()" class="bg-black/80 hover:bg-black text-[var(--text-main)] w-9 h-9 rounded-full flex items-center justify-center border border-[var(--border-color)] transition shadow-lg" title="Toggle Focus Mode"><i class="fa-solid fa-moon"></i></button>
+                <button onclick="toggleModal('readerModal', false)" class="bg-black/80 hover:bg-black text-red-500 w-9 h-9 rounded-full flex items-center justify-center border border-red-900/50 transition shadow-lg" title="Close Article"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div id="readerImageContainer" class="h-64 md:h-[400px] relative w-full hide-in-zen">
+                <img id="rImg" src="" class="w-full h-full object-cover" alt="News Image">
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+            </div>
+            <div class="p-6 md:p-10 space-y-6">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-[var(--border-color)] pb-4 hide-in-zen">
+                    <div class="flex flex-col">
+                        <span id="rTags" class="text-[10px] font-black uppercase text-[var(--accent)] tracking-widest mb-1"></span>
+                        <div class="flex flex-wrap items-center gap-3 text-xs text-[var(--text-muted)] font-mono">
+                            <span>By <strong id="rAuthor" class="text-[var(--text-main)]"></strong></span>
+                            <span class="hidden md:inline">•</span>
+                            <span id="rTime"></span>
+                        </div>
+                    </div>
+                    <button onclick="toggleTTS()" id="ttsBtn" class="px-4 py-2 rounded-xl text-[10px] font-bold border border-[var(--border-color)] text-[var(--text-muted)] hover:text-[var(--text-main)] transition flex items-center space-x-2 shrink-0 bg-[var(--bg-main)]">
+                        <i class="fa-solid fa-volume-high"></i> <span id="ttsText">LISTEN TO BRIEFING</span>
+                    </button>
+                </div>
+                <h2 id="rTitle" class="font-serif font-black leading-tight text-[var(--text-main)] text-2xl md:text-4xl"></h2>
+                <div id="rBody" class="text-[var(--text-main)] text-sm md:text-base leading-relaxed space-y-5 font-serif opacity-90"></div>
+                <div class="pt-6 hide-in-zen flex flex-wrap gap-3">
+                    <button onclick="reactToCurrent('like')" class="text-[var(--text-muted)] px-5 py-2.5 rounded-xl border border-[var(--border-color)] hover:bg-[var(--bg-main)] transition text-sm font-bold flex items-center space-x-2 shadow-sm">👍 <span>Approve</span> <span id="rLikes" class="bg-[var(--border-color)] text-[10px] px-2 py-0.5 rounded ml-1">0</span></button>
+                    <button onclick="reactToCurrent('love')" class="text-[var(--text-muted)] px-5 py-2.5 rounded-xl border border-[var(--border-color)] hover:bg-[var(--bg-main)] transition text-sm font-bold flex items-center space-x-2 shadow-sm">❤️ <span>Crucial</span> <span id="rLoves" class="bg-[var(--border-color)] text-[10px] px-2 py-0.5 rounded ml-1">0</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity">
+        <div class="glass-panel border border-[var(--border-color)] text-[var(--text-main)] rounded-2xl p-8 max-w-sm w-full shadow-2xl relative">
+            <button onclick="toggleModal('loginModal', false)" class="absolute top-4 right-4 text-[var(--text-muted)] hover:text-[var(--text-main)]"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="text-center space-y-2 mb-8">
+                <i class="fa-solid fa-shield-halved text-5xl text-[var(--accent)] mb-2 drop-shadow-lg"></i>
+                <h3 class="font-serif text-xl font-black uppercase tracking-widest">Secure Terminal</h3>
+                <p class="text-[10px] text-[var(--text-muted)] font-mono">AUTHORIZED PERSONNEL ONLY</p>
+            </div>
+            <div class="space-y-4">
+                <input type="text" id="adminUser" class="w-full bg-[var(--input-bg)] border border-[var(--border-color)] text-[var(--text-main)] focus:border-[var(--accent)] rounded-xl py-3 px-4 text-sm outline-none transition" placeholder="Clearance ID (R91)" autocomplete="off" />
+                <input type="password" id="adminPass" class="w-full bg-[var(--input-bg)] border border-[var(--border-color)] text-[var(--text-main)] focus:border-[var(--accent)] rounded-xl py-3 px-4 text-sm outline-none transition" placeholder="Cipher (Ranv)" />
+                <div id="loginErr" class="hidden bg-red-950/50 border border-red-500/30 text-red-200 text-xs p-3 rounded-xl text-center font-mono"></div>
+                <button onclick="attemptLogin()" class="w-full bg-[var(--accent)] text-[var(--accent-text)] font-black py-3.5 rounded-xl text-xs uppercase tracking-widest hover:opacity-90 transition shadow-lg mt-2">Initialize Access</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Broadcast Editor Modal -->
+    <div id="editorModal" class="fixed inset-0 bg-black/90 backdrop-blur-md z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity overflow-y-auto">
+        <div class="glass-panel border border-[var(--border-color)] text-[var(--text-main)] rounded-2xl p-6 md:p-8 max-w-3xl w-full shadow-2xl relative my-8">
+            <button onclick="toggleModal('editorModal', false)" class="absolute top-4 right-4 text-[var(--text-muted)] hover:text-[var(--text-main)]"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="font-serif text-xl font-black uppercase mb-6 tracking-wide flex items-center"><i class="fa-solid fa-satellite-dish text-[var(--accent)] mr-3 text-2xl"></i> Intel Broadcast Editor</h3>
+            <div class="space-y-5">
+                <input type="hidden" id="editId">
+                <div class="space-y-1">
+                    <label class="text-[10px] font-black uppercase text-[var(--text-muted)] tracking-widest">Classified Headline</label>
+                    <input type="text" id="editTitle" class="w-full bg-[var(--input-bg)] border border-[var(--border-color)] text-[var(--text-main)] focus:border-[var(--accent)] rounded-xl py-3 px-4 text-sm outline-none font-bold" placeholder="Enter high-impact headline..." />
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-black uppercase text-[var(--text-muted)] tracking-widest">Primary Category</label>
+                        <select id="editCat" onchange="toggleEditorState()" class="w-full bg-[var(--input-bg)] border border-[var(--border-color)] text-[var(--text-main)] rounded-xl py-3 px-4 text-sm outline-none cursor-pointer"></select>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="text-[10px] font-black uppercase text-[var(--text-muted)] tracking-widest">Regional Node</label>
+                        <select id="editState" class="hidden w-full bg-[var(--input-bg)] border border-[var(--border-color)] text-[var(--text-main)] rounded-xl py-3 px-4 text-sm outline-none cursor-pointer"></select>
+                    </div>
+                </div>
+                
+                <div class="space-y-1">
+                    <label class="text-[10px] font-black uppercase text-[var(--text-muted)] tracking-widest">Intelligence Briefing Content</label>
+                    <textarea id="editContent" rows="8" class="w-full bg-[var(--input-bg)] border border-[var(--border-color)] text-[var(--text-main)] focus:border-[var(--accent)] rounded-xl py-3 px-4 text-sm font-serif outline-none leading-relaxed" placeholder="Insert classified briefing reports here. Separate paragraphs with double line breaks..."></textarea>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 p-5 rounded-xl border border-[var(--border-color)] bg-[var(--bg-main)]">
+                    <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-[var(--bg-surface)] rounded transition w-full">
+                        <input type="checkbox" id="editFeatured" class="rounded bg-[var(--input-bg)] border-[var(--border-color)] accent-[var(--accent)] w-4 h-4" />
+                        <span class="text-xs font-bold text-[var(--text-main)]">Set as Hero Spotlight</span>
+                    </label>
+                    <label class="flex items-center space-x-3 cursor-pointer p-2 hover:bg-[var(--bg-surface)] rounded transition w-full border-t sm:border-t-0 sm:border-l border-[var(--border-color)] sm:pl-4">
+                        <input type="checkbox" id="editBreaking" class="rounded bg-[var(--input-bg)] border-[var(--border-color)] accent-red-500 w-4 h-4" />
+                        <span class="text-xs font-bold text-red-500">Flash Wire (Red Alert)</span>
+                    </label>
+                </div>
+                
+                <div class="flex justify-end space-x-3 pt-4 border-t border-[var(--border-color)] mt-4">
+                    <button onclick="toggleModal('editorModal', false)" class="px-6 py-2.5 rounded-xl text-xs font-bold text-[var(--text-muted)] hover:bg-[var(--bg-main)] hover:text-[var(--text-main)] border border-transparent transition">Abort</button>
+                    <button onclick="saveBroadcast()" class="bg-[var(--accent)] text-[var(--accent-text)] px-8 py-2.5 rounded-xl text-xs font-black uppercase tracking-wider hover:opacity-90 transition shadow-lg"><i class="fa-solid fa-paper-plane mr-2"></i> Transmit Securely</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Delete Confirmation Modal -->
+    <div id="deleteModal" class="fixed inset-0 bg-black/90 backdrop-blur-sm z-50 hidden items-center justify-center p-4 opacity-0 transition-opacity">
+        <div class="glass-panel border-2 border-red-900/50 rounded-2xl p-8 w-full max-w-md shadow-2xl text-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-red-600/5 pointer-events-none animate-pulse"></div>
+            <div class="text-red-500 text-5xl mb-4 animate-bounce drop-shadow-[0_0_15px_rgba(239,68,68,0.5)]"><i class="fa-solid fa-triangle-exclamation"></i></div>
+            <h3 class="text-[var(--text-main)] font-black text-xl mb-2 uppercase tracking-widest relative z-10">Purge Intelligence</h3>
+            <p class="text-[var(--text-muted)] text-xs mb-8 leading-relaxed relative z-10">Permanently scrub this dispatch from the global database and external cache servers? <br><strong class="text-red-400">This action is irreversible.</strong></p>
+            <div class="flex justify-center space-x-4 relative z-10">
+                <button onclick="toggleModal('deleteModal', false)" class="px-6 py-2.5 rounded-xl text-xs font-bold bg-[var(--input-bg)] text-[var(--text-main)] border border-[var(--border-color)] hover:border-[var(--text-muted)] transition">Abort Purge</button>
+                <button onclick="executeDelete()" class="px-6 py-2.5 rounded-xl text-xs font-black bg-red-600 text-white hover:bg-red-700 transition shadow-[0_0_15px_rgba(220,38,38,0.4)]">Confirm Purge</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container (Live Popups) -->
+    <div id="toastContainer" class="fixed bottom-6 left-6 z-50 flex flex-col space-y-3 pointer-events-none"></div>
+
+    <!-- Footer -->
+    <footer class="border-t border-[var(--border-color)] pt-12 pb-8 px-4 mt-16 bg-[var(--bg-surface)] text-center">
+        <!-- Footer Ad Space -->
+        <div class="max-w-4xl mx-auto ad-space w-full h-[90px] rounded-xl text-xs font-mono uppercase tracking-widest relative mb-8">
+             <span class="absolute top-1 left-2 text-[8px] opacity-50">AdSense Space</span>
+             Sponsored Link Area (728x90)
+        </div>
+        <p class="text-[10px] tracking-widest uppercase text-[var(--text-muted)] font-bold">
+            <i class="fa-solid fa-shield-halved mr-1"></i> © 2026 THE NATIONAL OBSERVER. ENCRYPTED & SECURED.
+        </p>
+        <div class="mt-4 flex justify-center space-x-4 text-[10px] text-[var(--text-muted)]">
+            <span class="cursor-pointer hover:text-[var(--accent)] transition">Privacy Policy</span>
+            <span>|</span>
+            <span class="cursor-pointer hover:text-[var(--accent)] transition">Terms of Access</span>
+            <span>|</span>
+            <span class="cursor-pointer hover:text-[var(--accent)] transition">Editorial Board</span>
+        </div>
+    </footer>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        import { getFirestore, collection, doc, setDoc, updateDoc, deleteDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+        // --- GLOBAL STATE & CONSTANTS ---
+        const CATEGORIES = ["Top Headlines", "Politics", "Defense & Security", "States", "National Business", "Tech", "Sports"];
+        const STATES = ["All States", "Delhi", "Maharashtra", "Karnataka", "Tamil Nadu", "Uttar Pradesh", "West Bengal", "Gujarat", "Rajasthan", "Andhra Pradesh", "Telangana", "Kerala", "Punjab", "Haryana", "Jammu & Kashmir", "Assam", "Odisha", "Bihar", "Madhya Pradesh", "Jharkhand", "Chhattisgarh", "Uttarakhand", "Himachal Pradesh", "Goa", "Tripura", "Meghalaya", "Manipur", "Nagaland", "Arunachal Pradesh", "Mizoram", "Sikkim"];
+        
+        let globalArticles = [];
+        let currentFilter = { cat: "Top Headlines", state: "All States", query: "", source: "all" };
+        let isAdmin = sessionStorage.getItem("globe_admin") === "true";
+        let isZenMode = false;
+        let activeArticle = null;
+        let deleteTargetId = null;
+        let ttsActive = false;
+        let synth = window.speechSynthesis;
+        let db = null;
+        
+        // Infinite Scroll State
+        let currentRenderCount = 20; 
+        const BATCH_SIZE = 20;
+        let isFetchingMore = false;
+
+        // Firebase injection config
+        const fbConfigStr = typeof __firebase_config !== 'undefined' ? __firebase_config : null;
+
+        // --- ENTERPRISE MASSIVE DATA ENGINE (10,000 RECORDS) ---
+        // Generates an immense in-memory database to simulate a 10MB+ payload and heavy enterprise application load.
+        const generateEnterpriseDatabase = () => {
+            document.getElementById('articleCount').innerText = "Synthesizing 10,000 Records...";
+            console.time("EnterpriseDB_Generation");
+            
+            // Core Seed News (High Quality 2026 data)
+            globalArticles = [
+                { id: "seed-1", title: "PMO Directs Massive Logistics Overhaul on LAC Infrastructure Ahead of Winter", category: "Defense & Security", subcategory: "Global Update", content: "NEW DELHI (ANI) — High-level sources indicate the Prime Minister's Office has sanctioned a rapid acceleration of all-weather road and tunnel construction along the Line of Actual Control. The defense ministry aims to fortify logistics pipelines before heavy snowfall isolates key forward positions.\n\nImmediate deployment of autonomous high-altitude drone squadrons has also been approved. Military strategists confirm this is the largest border infrastructure push since 2023, aimed directly at stabilizing rapid troop deployment times.", imageUrl: "https://images.unsplash.com/photo-1590059344445-6677f2ccb2b7?auto=format&fit=crop&w=800&q=80", likes: 844, loves: 120, author: "ANI Defense Desk", timestamp: Date.now() - 3600000, isFeatured: true, isBreaking: true, sourceType: "verified" },
+                { id: "seed-2", title: "Supreme Court Upholds New Electoral Bond Transparency Protocols for 2026", category: "Politics", subcategory: "Delhi", content: "DELHI — In a landmark constitutional bench ruling today, the Supreme Court of India mandated real-time digital disclosures for all corporate political donations exceeding ₹50 Lakhs. \n\nThe Election Commission is expected to roll out the tracking dashboard within 48 hours utilizing state-backed blockchain verification protocols, ensuring complete anonymity from public view but complete traceability by election watchdogs.", imageUrl: "https://images.unsplash.com/photo-1555529733-0e670560f7e1?auto=format&fit=crop&w=800&q=80", likes: 412, loves: 45, author: "Legal Correspondent", timestamp: Date.now() - 7200000, isFeatured: false, isBreaking: false, sourceType: "verified" },
+                { id: "seed-3", title: "Tata Electronics Commences 2nm Silicon Wafer Production in Dholera", category: "National Business", subcategory: "Gujarat", content: "GANDHINAGAR — Marking a historic milestone for the 'Make in India' initiative, the Dholera semiconductor fab has successfully output its first batch of 2-nanometer wafers, severely reducing reliance on East Asian imports for mobile processors.\n\nIndustry experts project a 40% reduction in local smartphone manufacturing costs by Q4 2026.", imageUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80", likes: 1024, loves: 330, author: "Financial Wire", timestamp: Date.now() - 14400000, isFeatured: false, isBreaking: false, sourceType: "verified" },
+                { id: "seed-4", title: "ISRO Announces Manned Lunar Gateway Partnership with NASA", category: "Tech", subcategory: "Global Update", content: "BENGALURU — The Indian Space Research Organisation (ISRO) has formally signed a joint cooperative treaty with NASA to co-develop the Lunar Gateway module. Two Indian Vyomanauts are slated to join the 2028 Artemis assembly crew.", imageUrl: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80", likes: 589, loves: 210, author: "Science Desk", timestamp: Date.now() - 28800000, isFeatured: false, isBreaking: true, sourceType: "verified" }
+            ];
+
+            // Autonomous Mass Generation Logic
+            const subjects = ["Cyber-Command", "Urban Infrastructure Board", "Ministry of Commerce", "Naval Fleet Command", "Agri-Tech Directorate", "Space Research Wing", "State Educational Council", "Highway Authority"];
+            const actions = ["announces massive overhaul of", "secures ₹5000Cr funding for", "deploys AI-driven systems across", "suspends operations pending inquiry into", "finalizes treaties regarding", "reports record growth in", "initiates audit of"];
+            const targets = ["coastal defense grids", "metropolitan subway extensions", "rural broadband initiatives", "drone delivery logistics", "renewable solar farms", "silicon fabrication plants", "EV charging corridors"];
+            
+            const startTimestamp = Date.now() - 86400000; // Start 1 day ago
+            
+            // Loop 10,000 times to create a massive heap size mimicking 10MB+ payload
+            for(let i=0; i<10000; i++) {
+                const state = STATES[Math.floor(Math.random() * (STATES.length - 1)) + 1];
+                const subj = subjects[Math.floor(Math.random() * subjects.length)];
+                const act = actions[Math.floor(Math.random() * actions.length)];
+                const tar = targets[Math.floor(Math.random() * targets.length)];
+                const isBreak = Math.random() > 0.98; // Very rare breaking
+                const imgID = 1500000000000 + (i%50)*10000; // Cycle through 50 random image hashes
+
+                globalArticles.push({
+                    id: `massive-gen-${i}`,
+                    title: `(ANI ARCHIVE) ${state}: ${subj} ${act} ${tar}`,
+                    category: CATEGORIES[Math.floor(Math.random() * CATEGORIES.length)],
+                    subcategory: state,
+                    content: `(ANI NEWS WIRE) — Detailed ground intelligence reports confirm significant movements in ${state}. Officials state the ${subj} ${act} ${tar} effectively immediately.\n\nSources suggest this will have long-term structural impact on regional development and economic throughput. Extensive audits are expected in the following fiscal quarter to track the ₹800Cr allocation.`,
+                    imageUrl: `https://images.unsplash.com/photo-${imgID}?auto=format&fit=crop&w=800&q=80`,
+                    likes: Math.floor(Math.random() * 500),
+                    loves: Math.floor(Math.random() * 100),
+                    author: "ANI Automated Archive",
+                    timestamp: startTimestamp - (i * 60000), // Spaced by 1 min
+                    isFeatured: false,
+                    isBreaking: isBreak,
+                    sourceType: "automated"
+                });
+            }
+            
+            console.timeEnd("EnterpriseDB_Generation");
+            document.getElementById('articleCount').innerText = `${globalArticles.length.toLocaleString()} Active Records`;
+        };
+
+        // --- LIFECYCLE INITIALIZATION ---
+        window.onload = () => {
+            generateEnterpriseDatabase();
+            initUI();
+            fetchWeatherForecast();
+            simulateLiveMarkets();
+            setupScrollListener();
+            setupGoogleTranslate();
+            
+            if (fbConfigStr) initFirebase();
+            else document.getElementById('fStatus').innerText = "Local Massive Mode";
+
+            // Live AI Auto-Wire every 60 seconds (Injects ANI style news)
+            setInterval(synthesizeLiveANIWire, 60000); 
+        };
+
+        const initUI = () => {
+            const today = new Date();
+            document.getElementById('currentDate').innerText = today.toLocaleDateString('en-IN', {weekday: 'short', day: '2-digit', month: 'short', year: 'numeric'}).toUpperCase();
+            
+            const nav = document.getElementById('categoryNav');
+            CATEGORIES.forEach(c => {
+                const btn = document.createElement('button');
+                btn.className = `cat-btn px-4 py-2 rounded-xl text-xs font-extrabold tracking-widest uppercase transition-all shadow-sm border border-[var(--border-color)] hover:border-[var(--accent)] ${c === 'Top Headlines' ? 'bg-[var(--accent)] text-[var(--accent-text)] border-[var(--accent)]' : 'bg-[var(--bg-main)] text-[var(--text-muted)] hover:text-[var(--text-main)]'}`;
+                btn.innerText = c;
+                btn.onclick = () => filterCategory(c);
+                nav.appendChild(btn);
+            });
+
+            const stSel = document.getElementById('stateSelect');
+            STATES.forEach(s => {
+                if(s !== "All States") stSel.innerHTML += `<option value="${s}" class="bg-[var(--bg-surface)] text-[var(--text-main)]">${s}</option>`;
+            });
+
+            const edCat = document.getElementById('editCat');
+            CATEGORIES.forEach(c => { if(c !== "Top Headlines") edCat.innerHTML += `<option value="${c}">${c}</option>`; });
+            const edSt = document.getElementById('editState');
+            STATES.forEach(s => { if(s !== "All States") edSt.innerHTML += `<option value="${s}">${s}</option>`; });
+
+            if(isAdmin) document.getElementById('adminFab').classList.remove('hidden');
+            
+            const savedTheme = localStorage.getItem('theme_val') || 'midnight';
+            document.getElementById('themeSelect').value = savedTheme;
+            changeTheme(savedTheme);
+
+            resetAndRenderNews();
+        };
+
+        // --- CUSTOM GOOGLE TRANSLATE FOR INDIAN REGIONAL LANGUAGES ---
+        window.setupGoogleTranslate = () => {
+            const script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.head.appendChild(script);
+        };
+        window.googleTranslateElementInit = () => {
+            new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
+        };
+        window.triggerTranslation = (langCode) => {
+            let selectField = document.querySelector(".goog-te-combo");
+            if (selectField) {
+                selectField.value = langCode;
+                selectField.dispatchEvent(new Event('change'));
+                window.showToast("Translating...", "Adapting feed to regional language.", "fa-language");
+            } else {
+                setTimeout(() => window.triggerTranslation(langCode), 500); 
+            }
+        };
+
+        // --- ENTERPRISE FIREBASE SYNC (V5 Pipeline) ---
+        const initFirebase = async () => {
+            try {
+                const app = initializeApp(JSON.parse(fbConfigStr));
+                const auth = getAuth(app);
+                db = getFirestore(app);
+                
+                await signInAnonymously(auth);
+                document.getElementById('fDot').classList.replace('bg-amber-500', 'bg-emerald-500');
+                document.getElementById('fStatus').innerText = "Cloud Active";
+                window.showToast("Cloud Connected", "Live national data stream secured.", "fa-cloud");
+
+                // v5 Collection for absolute clean slate sync
+                onSnapshot(collection(db, "national_intel_v5"), (snapshot) => {
+                    snapshot.docChanges().forEach((change) => {
+                        if (change.type === "added") {
+                            const data = change.doc.data();
+                            // INSTANT POPUP ON EVERY ADDED NEWS (Globally or Locally)
+                            if (data.timestamp > Date.now() - 30000) {
+                                window.showToast("🚨 LIVE DISPATCH", data.title, "fa-satellite-dish");
+                            }
+                            if(!globalArticles.find(a=>a.id===change.doc.id)) globalArticles.unshift({ id: change.doc.id, ...data });
+                        }
+                        if (change.type === "modified") {
+                            const index = globalArticles.findIndex(a=>a.id===change.doc.id);
+                            if(index!==-1) Object.assign(globalArticles[index], change.doc.data());
+                        }
+                        if (change.type === "removed") {
+                            globalArticles = globalArticles.filter(a=>a.id!==change.doc.id);
+                        }
+                    });
+                    document.getElementById('articleCount').innerText = `${globalArticles.length.toLocaleString()} Active Records`;
+                    resetAndRenderNews();
+                });
+            } catch (err) {
+                console.error("Firebase Error:", err);
+                document.getElementById('fStatus').innerText = "Massive Local Mode";
+            }
+        };
+
+        // --- AI AUTOMATED ANI-STYLE WIRE (EVERY 60 SEC) ---
+        const synthesizeLiveANIWire = () => {
+            const subjects = [
+                {c: "Defense & Security", t: "Ministry of Defense Clears Emergency Procurement of Drone Munitions", s: "Global Update", i: "fa-jet-fighter"},
+                {c: "Politics", t: "Election Commission Announces Dates for By-Elections in Key Constituencies", s: "Delhi", i: "fa-landmark"},
+                {c: "National Business", t: "RBI Governor Hints at Repo Rate Status Quo Amid Global Inflation", s: "Maharashtra", i: "fa-chart-line"},
+                {c: "States", t: "Heavy Rainfall Alert Issued for Coastal Regions by IMD", s: "Karnataka", i: "fa-cloud-rain"}
+            ];
+            const pick = subjects[Math.floor(Math.random() * subjects.length)];
+            
+            const newAIArticle = {
+                id: `ani-auto-live-${Date.now()}`,
+                title: `(ANI FLASH) ${pick.t}`,
+                category: pick.c, subcategory: pick.s,
+                content: `(ANI NEWS WIRE) — Ground reports confirm rapid developments regarding ${pick.t.toLowerCase()}.\n\nAuthorities are closely monitoring the situation. Highly placed sources confirm that rapid action teams have been briefed. Further dispatches will follow as intelligence updates arrive from central command.`,
+                imageUrl: "https://images.unsplash.com/photo-1548372290-8d01b6c8e78c?auto=format&fit=crop&w=800&q=80",
+                likes: Math.floor(Math.random()*50)+10,
+                loves: 5,
+                author: "ANI Automated Wire",
+                timestamp: Date.now(),
+                isFeatured: false,
+                isBreaking: Math.random() > 0.5,
+                sourceType: "automated"
+            };
+
+            globalArticles.unshift(newAIArticle);
+            if(db) setDoc(doc(db, "national_intel_v5", newAIArticle.id), newAIArticle);
+            
+            // Popup triggered explicitly for local generation fallback
+            const icon = newAIArticle.isBreaking ? "fa-triangle-exclamation" : pick.i;
+            window.showToast("📡 NEW LIVE DISPATCH", newAIArticle.title, icon);
+            
+            document.getElementById('articleCount').innerText = `${globalArticles.length.toLocaleString()} Active Records`;
+            resetAndRenderNews();
+        };
+
+        // --- LIVE MARKET SIMULATOR ---
+        const simulateLiveMarkets = () => {
+            const elements = {
+                sensex: { id: 'mktSensex', val: 74219 }, nifty: { id: 'mktNifty', val: 22543 },
+                usd: { id: 'mktUsd', val: 83.45 }, gold: { id: 'mktGold', val: 72450 },
+                silver: { id: 'mktSilver', val: 91200 }, plat: { id: 'mktPlat', val: 35100 }
+            };
+            
+            setInterval(() => {
+                Object.keys(elements).forEach(key => {
+                    const el = document.getElementById(elements[key].id);
+                    // Add subtle random fluctuation
+                    const flux = (Math.random() - 0.5) * (key==='usd'?0.05:50);
+                    elements[key].val += flux;
+                    // Format correctly based on type
+                    let txt = (key==='usd') ? elements[key].val.toFixed(2) : Math.round(elements[key].val).toLocaleString('en-IN');
+                    if(key==='gold'||key==='silver'||key==='plat') txt = '₹' + txt;
+                    el.innerText = txt;
+                });
+            }, 3000); // Flux every 3 seconds
+        };
+
+        // --- RENDER ENGINE & INFINITE SCROLL ---
+        window.filterCategory = (cat) => {
+            currentFilter.cat = cat;
+            if(cat === "States" || cat === "India" || cat === "Politics") {
+                document.getElementById('statesDropdownContainer').classList.remove('hidden');
+            } else {
+                document.getElementById('statesDropdownContainer').classList.add('hidden');
+                currentFilter.state = "All States";
+                document.getElementById('stateSelect').value = "All States";
+            }
+            
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if(btn.innerText === cat) btn.className = `cat-btn px-4 py-2 rounded-xl text-xs font-extrabold tracking-widest uppercase transition-all shadow-sm border bg-[var(--accent)] text-[var(--accent-text)] border-[var(--accent)]`;
+                else btn.className = `cat-btn px-4 py-2 rounded-xl text-xs font-extrabold tracking-widest uppercase transition-all shadow-sm border border-[var(--border-color)] bg-[var(--bg-main)] text-[var(--text-muted)] hover:text-[var(--text-main)] hover:border-[var(--accent)]`;
+            });
+            resetAndRenderNews();
+        };
+
+        window.filterState = (state) => { currentFilter.state = state; resetAndRenderNews(); };
+        window.setSourceFilter = (src) => { 
+            currentFilter.source = src; 
+            ['All', 'Verified', 'Auto'].forEach(b => document.getElementById('btnSrc'+b).className = "px-3 py-1 rounded-md text-[10px] font-bold text-[var(--text-muted)] hover:text-[var(--text-main)] transition");
+            document.getElementById('btnSrc' + (src==='all'?'All':src==='verified'?'Verified':'Auto')).className = "px-3 py-1 rounded-md text-[10px] font-bold bg-[var(--accent)] text-[var(--accent-text)] transition shadow";
+            resetAndRenderNews(); 
+        };
+
+        window.resetAndRenderNews = () => {
+            currentRenderCount = BATCH_SIZE;
+            renderNews(true);
+        };
+
+        window.renderNews = (isReset = false) => {
+            currentFilter.query = document.getElementById('searchInput').value.toLowerCase();
+            
+            // Filter the massive 10,000 array efficiently
+            let filtered = globalArticles.filter(a => {
+                if(currentFilter.source !== 'all' && a.sourceType !== currentFilter.source) return false;
+                if(currentFilter.cat !== "Top Headlines" && a.category !== currentFilter.cat) return false;
+                if(currentFilter.state !== "All States" && a.subcategory !== currentFilter.state) return false;
+                if(currentFilter.query && !a.title.toLowerCase().includes(currentFilter.query) && !a.content.toLowerCase().includes(currentFilter.query)) return false;
+                return true;
+            });
+
+            // Handle Flash Ticker
+            const ticker = document.getElementById('breakingTicker');
+            const breaking = globalArticles.filter(a => a.isBreaking).slice(0, 15);
+            if(breaking.length > 0) {
+                document.getElementById('breakingBannerContainer').classList.remove('hidden');
+                ticker.innerHTML = breaking.map(a => `<span class="mx-8 hover:underline cursor-pointer" onclick="openArticle('${a.id}')">✦ ${a.title.toUpperCase()} — <span class="text-red-500 font-mono text-xs font-bold">[${a.category.toUpperCase()}]</span></span>`).join('');
+            } else {
+                document.getElementById('breakingBannerContainer').classList.add('hidden');
+            }
+
+            const featContainer = document.getElementById('featuredArticleContainer');
+            const grid = document.getElementById('newsGrid');
+            
+            if(isReset) { featContainer.innerHTML = ''; grid.innerHTML = ''; window.scrollTo(0,0); }
+
+            const featured = filtered.find(a => a.isFeatured) || filtered[0];
+            const regular = filtered.filter(a => a.id !== (featured?.id || ''));
+            const toRender = regular.slice(0, currentRenderCount);
+
+            if(isReset && featured && !currentFilter.query && currentFilter.cat === "Top Headlines") {
+                featContainer.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 border border-[var(--border-color)] rounded-2xl overflow-hidden shadow-2xl p-4 lg:p-6 bg-[var(--bg-surface)]">
+                    <div class="lg:col-span-7 relative h-64 lg:h-[420px] rounded-xl overflow-hidden group cursor-pointer shadow-inner" onclick="openArticle('${featured.id}')">
+                        <img src="${featured.imageUrl}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90"></div>
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span class="bg-[var(--accent)] text-[var(--accent-text)] text-[9px] font-black uppercase px-3 py-1.5 rounded-lg shadow-lg">${featured.category}</span>
+                            ${featured.subcategory ? `<span class="bg-black/60 backdrop-blur text-white text-[9px] font-bold px-3 py-1.5 rounded-lg border border-white/20 shadow-lg">${featured.subcategory}</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 flex flex-col justify-between py-2">
+                        <div class="space-y-4">
+                            <span class="text-[var(--accent)] font-mono text-[10px] font-extrabold tracking-widest block"><i class="fa-solid fa-star text-[8px] mr-1 animate-pulse"></i> HERO SPOTLIGHT</span>
+                            <h2 onclick="openArticle('${featured.id}')" class="font-serif text-3xl lg:text-4xl font-black leading-tight text-[var(--text-main)] hover:text-[var(--accent)] cursor-pointer drop-shadow-sm">${featured.title}</h2>
+                            <p class="text-[var(--text-muted)] text-sm line-clamp-5 leading-relaxed">${featured.content}</p>
+                        </div>
+                        <div class="border-t border-[var(--border-color)] pt-5 mt-6 flex justify-between items-center">
+                            <div class="flex space-x-2">
+                                <button onclick="reactToNews('${featured.id}', 'likes')" class="text-[var(--text-muted)] px-4 py-2 rounded-xl border border-[var(--border-color)] text-xs hover:bg-[var(--bg-main)] transition font-bold shadow-sm">👍 ${featured.likes}</button>
+                            </div>
+                            ${isAdmin ? `<div class="space-x-2"><button onclick="openEditor('${featured.id}')" class="bg-[var(--accent)] text-[var(--accent-text)] font-black text-[10px] uppercase px-4 py-2 rounded-lg shadow">Edit</button></div>` : ''}
+                        </div>
+                    </div>
+                </div>`;
+            }
+
+            // Render regular items (append if loading more)
+            let newHtml = '';
+            const startIndex = isReset ? 0 : currentRenderCount - BATCH_SIZE;
+            const itemsToAdd = toRender.slice(startIndex);
+
+            itemsToAdd.forEach(art => {
+                newHtml += `
+                <article class="border border-[var(--border-color)] rounded-2xl overflow-hidden flex flex-col justify-between shadow-xl bg-[var(--bg-surface)] hover:-translate-y-1 hover:border-[var(--accent)] transition duration-300">
+                    <div class="relative h-48 w-full group cursor-pointer" onclick="openArticle('${art.id}')">
+                        <img src="${art.imageUrl}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute top-3.5 left-3.5 flex gap-1.5 z-10">
+                            <span class="bg-[var(--accent)] text-[var(--accent-text)] text-[9px] font-black uppercase px-2.5 py-1 rounded shadow-lg">${art.category}</span>
+                            ${art.isBreaking ? `<span class="bg-red-600 text-white text-[9px] font-black uppercase px-2.5 py-1 rounded shadow-lg animate-pulse">FLASH</span>` : ''}
+                        </div>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-3">
+                            <span class="text-[9px] font-mono font-bold block text-[var(--text-muted)]"><i class="fa-regular fa-clock mr-1"></i> ${new Date(art.timestamp).toLocaleString()}</span>
+                            <h4 onclick="openArticle('${art.id}')" class="font-serif text-lg font-black leading-snug text-[var(--text-main)] hover:text-[var(--accent)] cursor-pointer line-clamp-3">${art.title}</h4>
+                        </div>
+                        <div class="border-t border-[var(--border-color)] pt-4 flex justify-between items-center">
+                            <div class="flex space-x-1.5">
+                                <button onclick="reactToNews('${art.id}', 'likes')" class="text-[var(--text-muted)] px-3 py-1.5 rounded-lg border border-[var(--border-color)] text-[10px] font-bold hover:text-[var(--text-main)] hover:bg-[var(--bg-main)] transition shadow-sm">👍 ${art.likes}</button>
+                                <button onclick="reactToNews('${art.id}', 'loves')" class="text-[var(--text-muted)] px-3 py-1.5 rounded-lg border border-[var(--border-color)] text-[10px] font-bold hover:text-[var(--text-main)] hover:bg-[var(--bg-main)] transition shadow-sm">❤️ ${art.loves || 0}</button>
+                            </div>
+                            ${isAdmin && art.sourceType === 'verified' ? `
+                                <div class="flex space-x-1">
+                                    <button onclick="openEditor('${art.id}')" class="bg-[var(--accent)] text-[var(--accent-text)] font-black text-[9px] px-2.5 py-1.5 rounded shadow"><i class="fa-solid fa-pen"></i></button>
+                                    <button onclick="confirmDelete('${art.id}')" class="bg-red-600 text-white font-bold text-[9px] px-2.5 py-1.5 rounded shadow"><i class="fa-solid fa-trash"></i></button>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                </article>`;
+            });
+
+            if(isReset) grid.innerHTML = newHtml;
+            else grid.insertAdjacentHTML('beforeend', newHtml);
+
+            // Hide spinner if all loaded
+            const spinner = document.getElementById('loadingMoreSpinner');
+            if(currentRenderCount >= regular.length) spinner.classList.add('hidden');
+            else spinner.classList.remove('hidden');
+            
+            isFetchingMore = false;
+        };
+
+        // --- INFINITE SCROLL LISTENER ---
+        const setupScrollListener = () => {
+            window.addEventListener('scroll', () => {
+                // Back to top button logic
+                const btn = document.getElementById('backToTopBtn');
+                if(window.scrollY > 500) btn.classList.remove('hidden');
+                else btn.classList.add('hidden');
+
+                // Infinite Scroll Logic (Trigger when near bottom)
+                if(window.innerHeight + window.scrollY >= document.body.offsetHeight - 800) {
+                    if(!isFetchingMore) {
+                        isFetchingMore = true;
+                        setTimeout(() => { // Small delay to show spinner and prevent thrashing
+                            currentRenderCount += BATCH_SIZE;
+                            renderNews(false);
+                        }, 300);
+                    }
+                }
+            });
+        };
+
+        // --- WEATHER FORECAST API INTEGRATION ---
+        const fetchWeatherForecast = async () => {
+            try { 
+                // Fetching 5-day forecast for Delhi
+                const res = await fetch('https://api.open-meteo.com/v1/forecast?latitude=28.6139&longitude=77.2090&current_weather=true&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto');
+                const data = await res.json();
+                
+                // Update Top Bar
+                document.getElementById('liveWeather').innerText = `Delhi: ${Math.round(data.current_weather.temperature)}°C`;
+                
+                // Update Modal
+                const container = document.getElementById('weatherForecastContainer');
+                let modalHtml = '';
+                
+                for(let i=0; i<5; i++) {
+                    const date = new Date(data.daily.time[i]).toLocaleDateString('en-IN', {weekday: 'long', day: 'numeric', month: 'short'});
+                    const max = Math.round(data.daily.temperature_2m_max[i]);
+                    const min = Math.round(data.daily.temperature_2m_min[i]);
+                    // Simple weather code mapping
+                    const code = data.daily.weathercode[i];
+                    let icon = 'fa-cloud'; let text = 'Cloudy';
+                    if(code <= 1) { icon = 'fa-sun text-yellow-500'; text = 'Sunny / Clear'; }
+                    else if (code <= 3) { icon = 'fa-cloud-sun text-yellow-400'; text = 'Partly Cloudy'; }
+                    else if (code >= 51 && code <= 67) { icon = 'fa-cloud-rain text-blue-400'; text = 'Rain'; }
+                    else if (code >= 95) { icon = 'fa-cloud-bolt text-purple-500'; text = 'Thunderstorm'; }
+
+                    modalHtml += `
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-[var(--bg-main)] border border-[var(--border-color)]">
+                            <span class="text-xs font-bold w-24">${date}</span>
+                            <div class="flex items-center space-x-2 text-xs text-[var(--text-muted)] w-32">
+                                <i class="fa-solid ${icon} text-lg"></i> <span>${text}</span>
+                            </div>
+                            <div class="text-xs font-mono">
+                                <span class="text-red-400">${max}°</span> / <span class="text-blue-400">${min}°</span>
+                            </div>
+                        </div>
+                    `;
+                }
+                container.innerHTML = modalHtml;
+
+            } catch(e) {
+                document.getElementById('liveWeather').innerText = `Delhi: API Error`;
+            }
+        };
+
+        // --- ARTICLE INTERACTIONS & PREMIUM TOOLS ---
+        window.openArticle = (id) => {
+            activeArticle = globalArticles.find(a => a.id === id);
+            document.getElementById('rTitle').innerText = activeArticle.title;
+            document.getElementById('rAuthor').innerText = activeArticle.author;
+            document.getElementById('rTime').innerText = new Date(activeArticle.timestamp).toLocaleString();
+            document.getElementById('rTags').innerText = `${activeArticle.category} ${activeArticle.subcategory ? '• '+activeArticle.subcategory : ''}`;
+            document.getElementById('rImg').src = activeArticle.imageUrl;
+            document.getElementById('rLikes').innerText = activeArticle.likes;
+            document.getElementById('rLoves').innerText = activeArticle.loves || 0;
+            
+            const paragraphs = activeArticle.content.split('\n').filter(p=>p.trim()!=='').map(p => `<p>${p}</p>`).join('');
+            document.getElementById('rBody').innerHTML = paragraphs;
+            
+            toggleModal('readerModal', true);
+            if(isZenMode) toggleZenMode(); 
+        };
+
+        window.toggleZenMode = () => {
+            isZenMode = !isZenMode;
+            const content = document.getElementById('readerContent');
+            if(isZenMode) content.classList.add('zen-active');
+            else content.classList.remove('zen-active');
+        };
+
+        window.toggleTTS = () => {
+            if(ttsActive) {
+                synth.cancel(); ttsActive = false;
+                document.getElementById('ttsText').innerText = "LISTEN TO BRIEFING";
+                document.getElementById('ttsBtn').classList.remove('bg-[var(--accent)]', 'text-[var(--accent-text)]');
+            } else {
+                if(!activeArticle) return;
+                const utterance = new SpeechSynthesisUtterance(`${activeArticle.title}. ${activeArticle.content}`);
+                utterance.onend = () => { 
+                    ttsActive = false; 
+                    document.getElementById('ttsText').innerText = "LISTEN TO BRIEFING"; 
+                    document.getElementById('ttsBtn').classList.remove('bg-[var(--accent)]', 'text-[var(--accent-text)]');
+                };
+                synth.speak(utterance); ttsActive = true;
+                document.getElementById('ttsText').innerText = "STOP AUDIO";
+                document.getElementById('ttsBtn').classList.add('bg-[var(--accent)]', 'text-[var(--accent-text)]');
+                window.showToast("Audio Briefing", "Reading dispatch contents aloud.", "fa-volume-high");
+            }
+        };
+
+        window.shareArticle = async () => {
+            try {
+                if(navigator.share) await navigator.share({ title: activeArticle.title, text: activeArticle.content.substring(0,50), url: window.location.href });
+                else { await navigator.clipboard.writeText(`${activeArticle.title} - ${window.location.href}`); showToast("Copied", "Link saved to clipboard.", "fa-link"); }
+            } catch(e) {}
+        };
+
+        window.reactToNews = async (id, type) => {
+            let art = globalArticles.find(a => a.id === id);
+            if(!art) return;
+            art[type] = (art[type] || 0) + 1;
+            if(db && art.sourceType === 'verified') await updateDoc(doc(db, "national_intel_v5", id), { [type]: art[type] });
+            
+            // Fast re-render without resetting scroll
+            const btnLikes = document.getElementById('rLikes');
+            const btnLoves = document.getElementById('rLoves');
+            if(btnLikes && activeArticle && activeArticle.id === id) btnLikes.innerText = art.likes;
+            if(btnLoves && activeArticle && activeArticle.id === id) btnLoves.innerText = art.loves;
+            
+            // Small hack to re-render grid without losing position
+            const gridHTML = document.getElementById('newsGrid').innerHTML;
+            if(gridHTML) resetAndRenderNews();
+        };
+
+        window.reactToCurrent = (type) => {
+            if(activeArticle) reactToNews(activeArticle.id, type);
+        };
+
+        // --- SIDEBAR WIDGET LOGIC ---
+        window.submitPoll = () => {
+            setTimeout(() => {
+                document.getElementById('pollOptions').classList.add('hidden');
+                document.getElementById('pollResults').classList.remove('hidden');
+                window.showToast("Vote Registered", "Thank you for participating in the National Poll.", "fa-check-circle");
+            }, 300);
+        };
+
+        // --- ADMIN SYSTEM LOGIC ---
+        window.attemptLogin = () => {
+            const u = document.getElementById('adminUser').value;
+            const p = document.getElementById('adminPass').value;
+            if(u==='R91' && p==='Ranv') {
+                isAdmin = true;
+                sessionStorage.setItem("globe_admin", "true");
+                toggleModal('loginModal', false);
+                document.getElementById('adminFab').classList.remove('hidden');
+                document.getElementById('adminControlsPanel').innerHTML = `<div class="flex items-center space-x-2 bg-emerald-950/40 border border-emerald-500/30 px-3 py-1.5 rounded-xl"><span class="text-[10px] text-emerald-400 font-black uppercase tracking-widest">Verified Auth</span><button onclick="logout()" class="bg-red-600 hover:bg-red-700 text-white text-[10px] font-bold py-1 px-3 rounded-lg transition shadow">Exit</button></div>`;
+                resetAndRenderNews();
+                showToast("Terminal Unlocked", "Admin clearance granted.", "fa-shield-check");
+            } else {
+                const err = document.getElementById('loginErr');
+                err.innerText = "ACCESS DENIED: Invalid Cipher.";
+                err.classList.remove('hidden');
+            }
+        };
+
+        window.logout = () => {
+            isAdmin = false; sessionStorage.removeItem("globe_admin");
+            document.getElementById('adminFab').classList.add('hidden');
+            document.getElementById('adminControlsPanel').innerHTML = `<button onclick="toggleModal('loginModal', true)" class="bg-[var(--bg-surface)] border border-[var(--border-color)] text-[var(--text-main)] hover:text-[var(--accent)] text-[11px] font-bold py-1.5 px-3.5 rounded-xl transition">🔐 Admin</button>`;
+            resetAndRenderNews();
+        };
+
+        window.toggleEditorState = () => {
+            const cat = document.getElementById('editCat').value;
+            const stateField = document.getElementById('editState');
+            if(cat === 'States' || cat === 'Politics') { stateField.classList.remove('hidden'); }
+            else { stateField.classList.add('hidden'); }
+        };
+
+        window.openEditor = (id = null) => {
+            const m = document.getElementById('editorModal');
+            if(id) {
+                const art = globalArticles.find(a=>a.id===id);
+                document.getElementById('editId').value = art.id;
+                document.getElementById('editTitle').value = art.title;
+                document.getElementById('editCat').value = art.category;
+                toggleEditorState();
+                if(art.category==='States' || art.category==='Politics') document.getElementById('editState').value = art.subcategory;
+                document.getElementById('editContent').value = art.content;
+                document.getElementById('editFeatured').checked = art.isFeatured;
+                document.getElementById('editBreaking').checked = art.isBreaking;
+            } else {
+                document.getElementById('editId').value = "";
+                document.getElementById('editTitle').value = "";
+                document.getElementById('editContent').value = "";
+                document.getElementById('editFeatured').checked = false;
+                document.getElementById('editBreaking').checked = false;
+            }
+            toggleModal('editorModal', true);
+        };
+
+        window.saveBroadcast = async () => {
+            const id = document.getElementById('editId').value;
+            const cat = document.getElementById('editCat').value;
+            const sub = (cat==='States'||cat==='Politics') ? document.getElementById('editState').value : "National";
+            
+            const payload = {
+                title: document.getElementById('editTitle').value,
+                category: cat, subcategory: sub,
+                content: document.getElementById('editContent').value,
+                imageUrl: "https://images.unsplash.com/photo-1541872703-74c5e44368f9?auto=format&fit=crop&w=800&q=80",
+                isFeatured: document.getElementById('editFeatured').checked,
+                isBreaking: document.getElementById('editBreaking').checked,
+                author: "Owner's Desk", sourceType: "verified"
+            };
+
+            if(payload.isFeatured) {
+                globalArticles.forEach(a => a.isFeatured = false);
+            }
+
+            if(id) { 
+                let ex = globalArticles.find(a=>a.id===id);
+                Object.assign(ex, payload);
+                if(db) await updateDoc(doc(db, "national_intel_v5", id), payload);
+            } else { 
+                payload.id = `intel-${Date.now()}`;
+                payload.timestamp = Date.now();
+                payload.likes = 0; payload.loves = 0;
+                globalArticles.unshift(payload);
+                if(db) await setDoc(doc(db, "national_intel_v5", payload.id), payload);
+                // Explicitly trigger popup for local injection if db fails
+                if(!db) window.showToast("🚨 LIVE DISPATCH", payload.title, "fa-satellite-dish");
+            }
+            
+            toggleModal('editorModal', false);
+            document.getElementById('articleCount').innerText = `${globalArticles.length.toLocaleString()} Active Records`;
+            resetAndRenderNews();
+            showToast("Broadcast Live", "Intel successfully published to global network.", "fa-check");
+        };
+
+        window.confirmDelete = (id) => { deleteTargetId = id; toggleModal('deleteModal', true); };
+        window.executeDelete = async () => {
+            if(!deleteTargetId) return;
+            globalArticles = globalArticles.filter(a => a.id !== deleteTargetId);
+            if(db) await deleteDoc(doc(db, "national_intel_v5", deleteTargetId));
+            toggleModal('deleteModal', false);
+            deleteTargetId = null;
+            document.getElementById('articleCount').innerText = `${globalArticles.length.toLocaleString()} Active Records`;
+            resetAndRenderNews();
+            showToast("Data Purged", "Record permanently expunged from systems.", "fa-trash");
+        };
+
+        // --- UTILS & MODALS ---
+        window.toggleModal = (id, show) => {
+            const m = document.getElementById(id);
+            if(show) { m.classList.remove('hidden'); setTimeout(()=>m.classList.remove('opacity-0'), 10); }
+            else { m.classList.add('opacity-0'); setTimeout(()=>m.classList.add('hidden'), 300); }
+            if(!show && id==='readerModal' && ttsActive) { synth.cancel(); ttsActive=false; }
+        };
+
+        window.changeTheme = (val) => {
+            document.body.className = `theme-${val} min-h-screen flex flex-col justify-between`;
+            localStorage.setItem('theme_val', val);
+        };
+
+        window.showToast = (title, msg, icon) => {
+            const c = document.getElementById('toastContainer');
+            const el = document.createElement('div');
+            el.className = `glass-panel rounded-xl p-4 shadow-2xl w-80 md:w-96 flex items-center space-x-4 border-l-4 border-[var(--accent)] toast-enter pointer-events-auto`;
+            el.innerHTML = `
+                <div class="text-[var(--accent)] text-2xl drop-shadow-md"><i class="fa-solid ${icon}"></i></div>
+                <div class="flex-1"><h5 class="text-[12px] font-black uppercase tracking-widest text-[var(--text-main)]">${title}</h5><p class="text-[11px] text-[var(--text-muted)] mt-1 leading-snug line-clamp-2">${msg}</p></div>
+            `;
+            c.appendChild(el);
+            setTimeout(() => { el.style.opacity='0'; setTimeout(()=>el.remove(),300); }, 6000);
+        };
+    </script>
+</body>
+</html>
